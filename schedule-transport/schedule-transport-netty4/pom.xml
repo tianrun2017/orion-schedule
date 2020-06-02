@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.orion.schedule</groupId>
+        <artifactId>schedule-transport</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.orion.schedule</groupId>
+    <artifactId>schedule-transport-netty4</artifactId>
+
+    <name>schedule-transport-netty4</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>1.0.0-RC3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+

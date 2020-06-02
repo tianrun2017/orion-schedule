@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.orion.schedule</groupId>
+        <artifactId>schedule-starter</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.orion.schedule</groupId>
+    <artifactId>schedule-client-starter</artifactId>
+    <name>schedule-client-starter</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-progress-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-progress-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-transport-netty4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-codec-msgpack</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-register-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-register-etcd</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+</project>

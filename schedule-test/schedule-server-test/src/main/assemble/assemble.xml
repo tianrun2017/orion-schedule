@@ -1,0 +1,30 @@
+<assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://maven.apache.org/POM/4.0.0"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-1.0.0.xsd">
+    <id>package</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <fileSets>
+        <!-- shell file -->
+        <!-- gump job file: ${environment} from pom.xml -->
+        <fileSet>
+            <directory>src/main/assemble</directory>
+            <includes>
+
+            </includes>
+            <outputDirectory></outputDirectory>
+        </fileSet>
+        <!-- config file: ${environment} from pom.xml -->
+        <!-- executable jar -->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <includes>
+                <include>${project.artifactId}-${project.version}.jar</include>
+            </includes>
+            <outputDirectory></outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

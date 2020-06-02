@@ -1,0 +1,23 @@
+schedule:
+  server:
+    transport:
+      config:
+        serverPort: 9008
+    register:
+      config:
+        namespace: "431b3916-40d9-4710-aa25-dce3c438cf2b"
+        serverList:
+          - "10.107.119.133:8842"
+    task:
+      groupList:
+        - "101"
+      notifyType: KAFKA
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
