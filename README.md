@@ -1,1 +1,1 @@
-ai-schedule
+schedule-core service
