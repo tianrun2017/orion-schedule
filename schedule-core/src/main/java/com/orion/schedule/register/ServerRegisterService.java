@@ -43,8 +43,11 @@ public class ServerRegisterService implements BeanDefinitionRegistryPostProcesso
                 Map<String, ServerRegister> beansOfType = ((DefaultListableBeanFactory) beanFactory).getBeansOfType(ServerRegister.class);
                 if (MapUtils.isNotEmpty(beansOfType)) {
                     beansOfType.values().stream().forEach(bean -> {
-                        serverRegisterMap.put(bean.registerCode(), bean);
-                        logger.info("init server register [{}] ", bean.registerCode());
+                        if (bean.registerCode().equals(code)) {
+                            bean.init();
+                            serverRegisterMap.put(bean.registerCode(), bean);
+                            logger.info("init server register [{}] ", bean.registerCode());
+                        }
                     });
                 }
             }

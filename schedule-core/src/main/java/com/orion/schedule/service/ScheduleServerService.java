@@ -44,7 +44,6 @@ public class ScheduleServerService {
             throw new RuntimeException("the register [" + registerType + "] cannot found ");
         }
 
-        serverRegister.init();
         serverRegister.register();
 
         /**

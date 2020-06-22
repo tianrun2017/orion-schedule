@@ -1,5 +1,6 @@
 package com.orion.schedule.register;
 
+import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingFactory;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.listener.NamingEvent;
@@ -40,13 +41,17 @@ public class NacosServerRegister implements ServerRegister {
     @Autowired
     private ServerTransportService serverTransportService;
 
-    public void init() throws Exception {
+    public void init() {
         NacosRegister nacosConfig = scheduleServerConfig.getRegister().getConfig();
         Properties properties = new Properties();
         properties.setProperty("serverAddr", StringUtils.join(nacosConfig.getServerList(), ','));
         properties.setProperty("namespace", nacosConfig.getNamespace());
 
-        namingService = NamingFactory.createNamingService(properties);
+        try {
+            namingService = NamingFactory.createNamingService(properties);
+        } catch (NacosException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

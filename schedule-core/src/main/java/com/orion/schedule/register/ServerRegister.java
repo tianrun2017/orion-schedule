@@ -19,7 +19,7 @@ public interface ServerRegister {
      * @return
      * @throws Exception
      */
-    public void init() throws Exception;
+    public void init() ;
 
     /**
      * do register user

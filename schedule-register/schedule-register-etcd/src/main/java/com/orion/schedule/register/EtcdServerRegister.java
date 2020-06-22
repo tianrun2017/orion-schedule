@@ -56,7 +56,7 @@ public class EtcdServerRegister implements ServerRegister {
     private long leaseId;
     private ByteSequence ZEROVALUE = ByteSequence.from(new byte[]{0});
 
-    public void init() throws Exception {
+    public void init() {
         EtcdRegister config = scheduleServerConfig.getRegister().getEtcdConfig();
         if (CollectionUtils.isEmpty(config.getServerList())) {
             throw new RuntimeException("etcd config must contains serverList config");
@@ -82,7 +82,7 @@ public class EtcdServerRegister implements ServerRegister {
             client.getLeaseClient().keepAlive(leaseId, new StreamObserver<LeaseKeepAliveResponse>() {
                 @Override
                 public void onNext(LeaseKeepAliveResponse leaseKeepAliveResponse) {
-                    logger.error("keepAlive invoke");
+                    logger.info("keepAlive invoke");
                 }
 
                 @Override
@@ -125,6 +125,9 @@ public class EtcdServerRegister implements ServerRegister {
             String serviceName = String.format(serviceNamePrefix, group) + selfIp;
             client.getKVClient().delete(parseToSequence(serviceName));
             logger.info("server unRegister success [{}] ", serviceName);
+        }
+        if (leaseId > 0) {
+            client.getLeaseClient().revoke(leaseId);
         }
         return true;
     }
