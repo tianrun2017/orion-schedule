@@ -16,6 +16,8 @@ Orion schedule 是一个高性能的分布式任务框架，通过任务调度�
 - 多数据源支持
 待执行的任务数据包括但不限于文件/数据库/消息队列/缓存等
 
+具体配置可参考[配置列表](#配置列表)
+
 ## 整体框架
 ![schedule_architure](https://user-images.githubusercontent.com/66338301/85259237-480d8e80-b49b-11ea-8fa3-91749f9a9301.png)
 ## 代码组成
@@ -92,10 +94,62 @@ com.orion.schedule.processor.grid.GridJobProcessor
 #### 任务配置
 任务配置则将基于分组配置任务的基本信息，相对比较简单，上下文中可以填写部分信息，这部分信息在任务执行过程中可以带过去
 
+## <a id="#配置列表">配置列表</a>
+```yaml
+schedule:
+    server:
+      codec:
+        code: jackson-msg-pack  ##调度指令及任务分发过程中报文的压缩编码格式，默认jsonpack
+      transport:
+        code: netty4 ## 指令下发及报文的传输通道
+        config:
+          serverPort: xxx, ## 客户端引入时需要，接受指令及任务数据的端口，不同的虚拟分组需保持不同
+          idleTime:  xxx ## 保持心跳的时间间隔，默认5秒
+          connectionTimeOut: xxx ## 连接超时时间，默认5秒
+          closeWait: xx ## 优雅关闭时，连接关闭时间
+      register:
+        code: xxx ##注册中心类型，目前支持 nacos,etcd，后续可扩展其他类型
+        config:  ## nacos配置信息
+          namespace: xxx ## nacos命名空间
+          serverList: ##nacos服务端信息
+            - 10.10.10.10
+            - 10.20.20.20 
+        etcdConfig: ## etcd配置
+          serverList: ## serverList信息
+            - 10.10.10.10
+            - 10.20.20.20 
+          ttl: xx ## 心跳时间
+      task: 
+        groupList:  ## 虚拟分组信息，多个虚拟分组可以在一个任务配置中 
+          - xx
+          - xx
+        processThread: xx, ##任务执行端的并发度，同一个应用的多个虚拟分组共享此并发度
+        noticeType: xx ## 任务进度上报方式，目前支持'KAFKA','DB'
+        dataSource: ## noticeType为DB时需要配置此参数集，用于指明如何上报任务执行进度信息
+          url: xxx  ## 连接url，需要用com.orion.schedule.progress.util.ScheduleEncrypt加密
+          userName: xx ## 用户名称 同上需要加密
+          password:  xx ## 用户密码 同上需要加密
+          token: xxx ## 和上述三个二选1，将三个维度信息放到一个json中再统一用上述方式加密
+        messageConfig: ## 当noticeType为KAFKA时需要补充此信息
+          register: xxx ## kafka的服务端地址
+          useSSL: xx ## 是否用ssl链接 默认false
+          topic: xxx ## kafka的topic信息
+          useKerberos: xxx ## 是否用kerberos认证，默认false
+          krbPath: xxxx ## krb配置文件路径
+          krbTabPath: xxx ## keyTab文件路径
+          kerberosUser: xxx ## kerberors 用户
 
+```
 
-
-
-
-
-
+### 配置的分类
+### 调度端
+- codec
+- transport
+- register
+服务端的配置可参考 [schedule-console](https://github.com/orion-open-group/schedule-console)
+### 任务接入端
+- codec
+- transport
+- register
+- task
+接入端的配置可参考 [schedule-demo](https://github.com/orion-open-group/schedule-demo)
