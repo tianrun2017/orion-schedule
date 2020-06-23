@@ -18,7 +18,7 @@
         <module>schedule-config</module>
         <module>schedule-register</module>
         <module>schedule-transport</module>
-        <module>schedule-test</module>
+<!--        <module>schedule-test</module>-->
         <module>schedule-progress</module>
         <module>schedule-common</module>
     </modules>
