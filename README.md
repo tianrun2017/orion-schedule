@@ -1,5 +1,7 @@
 欢迎大家使用这个框架
-目前主要支持nacos,etcd两个类型的注册中心，zk正在开发中，如公司环境等需要其他环境，请同步我下，我会尽快提供新的特性支持，如需联系请邮箱:potsmart@foxmail.com
+目前主要支持nacos,etcd,zookeeper 三个类型的注册中心，如现实环境等需要其他环境，请同步我下，我会尽快提供新的特性支持，如需联系请邮箱:potsmart@foxmail.com、
+也可以自行开发，在schedule-register中直接开发即可
+
 ## schedule-framework
 Orion schedule 是一个高性能的分布式任务框架，通过任务调度和任务执行的分离，从而可以小规模的调度集群调度大规模的执行队列，同时保证调度请求不会因个别任务执行耗时影响其他服任务
 大致调度逻辑图如下
@@ -133,17 +135,16 @@ schedule:
           connectionTimeOut: xxx ## 连接超时时间，默认5秒
           closeWait: xx ## 优雅关闭时，连接关闭时间
       register:
-        code: xxx ##注册中心类型，目前支持 nacos,etcd，后续可扩展其他类型
+        code: xxx ##注册中心类型，目前支持 nacos,etcd，zk,后续可扩展其他类型
+        serverList: ##服务器信息
+           - 10.10.10.10
+           - 10.10.10.10
         config:  ## nacos配置信息
           namespace: xxx ## nacos命名空间
-          serverList: ##nacos服务端信息
-            - 10.10.10.10
-            - 10.20.20.20 
         etcdConfig: ## etcd配置
-          serverList: ## serverList信息
-            - 10.10.10.10
-            - 10.20.20.20 
           ttl: xx ## 心跳时间
+        zkConfig: ## etcd配置
+          timeout: xx ## 超时时间
       task: 
         groupList:  ## 虚拟分组信息，多个虚拟分组可以在一个任务配置中 
           - xx

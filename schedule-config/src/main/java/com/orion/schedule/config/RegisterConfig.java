@@ -25,7 +25,9 @@ public class RegisterConfig {
      */
     String registerEnv = "DEVELOP";
 
-    NacosRegister config;
+    List<String> serverList;
+
+    NacosRegister nacosConfig;
 
     EtcdRegister etcdConfig;
 

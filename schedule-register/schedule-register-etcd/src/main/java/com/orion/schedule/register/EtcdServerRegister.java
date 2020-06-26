@@ -57,12 +57,12 @@ public class EtcdServerRegister implements ServerRegister {
     private ByteSequence ZEROVALUE = ByteSequence.from(new byte[]{0});
 
     public void init() {
-        EtcdRegister config = scheduleServerConfig.getRegister().getEtcdConfig();
-        if (CollectionUtils.isEmpty(config.getServerList())) {
+        List<String> serverList = scheduleServerConfig.getRegister().getServerList();
+        if (CollectionUtils.isEmpty(serverList)) {
             throw new RuntimeException("etcd config must contains serverList config");
         }
         ttl = scheduleServerConfig.getRegister().getEtcdConfig().getTtl();
-        List<URI> serverURLList = config.getServerList().stream().map(serverUrl -> URI.create(serverUrl)).collect(Collectors.toList());
+        List<URI> serverURLList = serverList.stream().map(serverUrl -> URI.create(serverUrl)).collect(Collectors.toList());
         client = Client.builder().endpoints(serverURLList).build();
     }
 

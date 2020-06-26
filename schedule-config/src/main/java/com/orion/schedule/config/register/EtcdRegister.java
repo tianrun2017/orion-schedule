@@ -12,6 +12,5 @@ import java.util.List;
 
 @Data
 public class EtcdRegister {
-    private List<String> serverList;
     private int ttl;
 }

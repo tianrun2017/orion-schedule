@@ -42,9 +42,10 @@ public class NacosServerRegister implements ServerRegister {
     private ServerTransportService serverTransportService;
 
     public void init() {
-        NacosRegister nacosConfig = scheduleServerConfig.getRegister().getConfig();
+        NacosRegister nacosConfig = scheduleServerConfig.getRegister().getNacosConfig();
+        List<String> serverList = scheduleServerConfig.getRegister().getServerList();
         Properties properties = new Properties();
-        properties.setProperty("serverAddr", StringUtils.join(nacosConfig.getServerList(), ','));
+        properties.setProperty("serverAddr", StringUtils.join(serverList, ','));
         properties.setProperty("namespace", nacosConfig.getNamespace());
 
         try {

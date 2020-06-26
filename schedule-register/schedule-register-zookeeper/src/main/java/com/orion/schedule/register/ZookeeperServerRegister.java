@@ -42,7 +42,7 @@ public class ZookeeperServerRegister implements ServerRegister {
     private ServerTransportService serverTransportService;
 
     public void init() {
-        List<String> serverList = scheduleServerConfig.getRegister().getZkConfig().getServerList();
+        List<String> serverList = scheduleServerConfig.getRegister().getServerList();
         String join = StringUtils.join(serverList, ",");
         try {
             zk = new ZooKeeper(join, scheduleServerConfig.getRegister().getZkConfig().getTimeout(), new Watcher() {

@@ -2,7 +2,6 @@ package com.orion.schedule.config.register;
 
 import lombok.Data;
 
-import java.util.List;
 
 /**
  * @Description TODO
@@ -12,6 +11,5 @@ import java.util.List;
  */
 @Data
 public class ZookeeperRegister {
-    List<String> serverList;
     int timeout = 50000;
 }
