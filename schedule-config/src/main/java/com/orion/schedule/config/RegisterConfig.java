@@ -2,7 +2,10 @@ package com.orion.schedule.config;
 
 import com.orion.schedule.config.register.EtcdRegister;
 import com.orion.schedule.config.register.NacosRegister;
+import com.orion.schedule.config.register.ZookeeperRegister;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @Description TODO
@@ -25,4 +28,8 @@ public class RegisterConfig {
     NacosRegister config;
 
     EtcdRegister etcdConfig;
+
+    ZookeeperRegister zkConfig;
+
 }
+

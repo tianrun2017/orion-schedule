@@ -7,7 +7,11 @@ package com.orion.schedule.enums;
  * @Version 1.0.0
  */
 public enum RegisterType {
-    NACOS("nacos");
+    NACOS("nacos"),
+    ETCD("etcd"),
+    ZK("zk"),
+
+    ;
 
     String code;
 

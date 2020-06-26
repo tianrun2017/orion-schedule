@@ -64,6 +64,10 @@
         </dependency>
         <dependency>
             <groupId>com.orion.schedule</groupId>
+            <artifactId>schedule-register-zookeeper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orion.schedule</groupId>
             <artifactId>schedule-transport-netty4</artifactId>
         </dependency>
         <dependency>

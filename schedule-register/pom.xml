@@ -17,5 +17,6 @@
     <modules>
         <module>schedule-register-nacos</module>
         <module>schedule-register-etcd</module>
+        <module>schedule-register-zookeeper</module>
     </modules>
 </project>
