@@ -60,7 +60,7 @@ all the config you can read below [config list](#config list)
 
 ## Peformance
 - the schedule module can support thousands of task by 2 instance 
-- 任务执行实例性能=任务实例数*10（可配置）， 比传统的调度方式有极大的提升
+- the actual parallel is instance * 10 (10 can be configed by your own application)
 
 ## the whole Framework 
 ![schedule_architure](https://user-images.githubusercontent.com/66338301/85259237-480d8e80-b49b-11ea-8fa3-91749f9a9301.png)
