@@ -201,7 +201,7 @@ if you want to deploy your own server instead of the schedule-console,the config
 - codec
 - transport
 - register
-all the config detail you can get reference example ![schedule-console](https://github.com/orion-open-group/schedule-console)
+all the config detail you can get reference example [schedule-console](https://github.com/orion-open-group/schedule-console)
 ### the task execute module
 - codec
 - transport
@@ -209,4 +209,4 @@ all the config detail you can get reference example ![schedule-console](https://
 - task
 
 you can get reverence like this 
-![schedule-demo](https://github.com/orion-open-group/schedule-demo)
+[schedule-demo](https://github.com/orion-open-group/schedule-demo)
