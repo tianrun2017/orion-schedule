@@ -1,16 +1,16 @@
 Welcome to Use this Distributed Task Framework
 
 This framework support NACOS,ETCD,ZOOKEEPER as it's service discover now,if you neeed another kind of service discover service ,
-pls notice me ,i will add the feature as soon as posibility, You can add the feature by yourself ,it's very simple
-pls read the register module ,there is few interface you need to impl,
+please notice me ,i will add the feature as soon as possible, You can add the feature by yourself ,it's very simple
+please read the register module ,there is only a few interfaces that you need to implement,
 - register
 - unregister
 - getAllServer
 - addServerChangeListener
 
-if you test the new feature ok ,pls send the feature merge request to the master ,It will be helpful for other people who need it  
+if you test the new feature ok ,please send the feature merge request to the master ,It will be helpful for other people who need it  
 
-## Schedule-framework
+## Schedule-Framework
 Orion schedule is a high performance distribute task framework ,It was designed  to dispart the schedule module and the task execute module
 ,because of this ,it can support large scale task's distribute and won't be effected by some task that use more time ,
 For the task execute module,it support all kinds of the data for input ,with the virtual group config,the task data can flow each other to 
@@ -24,8 +24,8 @@ the whole feature in the below
 ## The main feature
 - Task schedule and task execute is divided 
 
-this feature can give ensure for task schedule,only two instance can schedule throunds of the task ,and they will not be deplyed,
-Compared to the common schedule Quartz,when the task more than the threadpool,the task have the risk to be delayed
+this feature can give ensure for task schedule,only two instances can schedule thousands of the task ,and they will not be deployed,
+Compared to the common schedule Quartz,when the task more than the ThreadPool,the task have the risk to be delayed
 - Virtual Group 
 
 for the virtual Group, all the instance in the group can share the task data each other,and the ability to process the task data will improved
@@ -39,21 +39,21 @@ the task module has high concurrence in each instance(10 thread pool default),al
 - expand scale easy
 
 the scale of the task group can easy to be expand ,only deploy the new instance ,and the task will dispatch to the new instance automatic
-Be care of Reduce the scale mechine ,if the task was executing,it will loss some wait process data 
+Be care of Reduce the scale machine ,if the task was executing,it will loss some wait process data 
 
 - Perceptive of progress 
 
 when the batch of data is deal,the result will be reported to the schedule server,and you can view the progress in the console  
-Be care of one thing,the total data of the task will be updated only when all the import stream data was read
-so you will see the result of the processed data is more than total
+Be care of one thing,the total data of the task will be updated only when all the import stream data read is successful
+So you will see the result of the processed data is more than total
 
 - The balance load for all progress 
 
-the task can be distributed more step if you need ,it can help to make more balance between virtual group mechine 
+the task can be distributed more step if you need ,it can help to make more balance between virtual group machine 
 
-- Idempontent
+- Idempotent
 
-any batch of the data will be retry three times when the dispatch action failed, and the receive mechine 
+Any batch of the data will be retried three times to the same machine when the dispatch action failed, and the machine who receive the data  
 has the mechanism can make sure only one batch will be processed
 
 all the config you can read below [config list](#config list)
@@ -62,21 +62,21 @@ all the config you can read below [config list](#config list)
 - the schedule module can support thousands of task by 2 instance 
 - the actual parallel is instance * 10 (10 can be configed by your own application)
 
-## the whole Framework 
+## Whole Framework 
 ![schedule_architure](https://user-images.githubusercontent.com/66338301/85259237-480d8e80-b49b-11ea-8fa3-91749f9a9301.png)
-## the main code module
+## The main code module
 the framework have 4 github code repository ,three for main and one for demo
 - schedule-core  
-the core impl for task schedule 
+the core implementation for task schedule 
 - schedule-console 
 an impl for task schedule and offers restful api for task management
 - console-web 
-the console for task managment ,include virtual group,task management,task instance management
+the console for the task management ,include virtual group,task management,task instance management
 - schedule-demo 
 the demo for task development
 
 ## How to use it 
-###  compile and install
+###  Compile and Install
 - schedule-core 
 ```bash
 git clone https://github.com/orion-open-group/schedule-core
@@ -85,7 +85,7 @@ mvn install -Dmaven.test.skip=true
 ```
 - schedule-console
 
-you should create the datasource to persistent task config and task instance, now it support mysql ,you can use the init.sql ,it will create database and user 
+you should create the datasource to persistent task config and task instance, now it only support mysql ,you can use the init.sql ,it will create database and user 
 ```bash
 git clone https://github.com/orion-open-group/schedule-console
 cd schedule-console
@@ -100,13 +100,13 @@ cd console-web
 cnpm install
 cnpm run dev
 ``` 
-when all is ok ,you can login the console,the default user is admin/123123
+when all is ok ,you can login the console page,the default user is admin/123123
 
 ### Config the task
 #### Group config
 
 The main logic is create a virtual group,all task will be relatived to a group,it indicate the same code in the group,when it finished,you can copy the group code for your application
-#### the task development
+#### Task development
 
 to add the dependency schedule-client-starter by the default version
 ```xml
@@ -145,11 +145,11 @@ and how to process the data ,most of the time the logic to process the data shou
 
 when the task is developed,you can config it in the console page
 
-#### task config
+#### Task Config
 
 it's very simple to config the task in the console page
 
-## <a id="#config list">config list</a>
+## <a id="#config list">Config List</a>
 ```yaml
 schedule:
     server:
@@ -188,7 +188,7 @@ schedule:
           register: xxx ## kafka server info 
           useSSL: xx ## config if use ssl ,default false
           topic: xxx ## the topic 
-          useKerberos: xxx ## if use kerberos ,if use pls set true
+          useKerberos: xxx ## if use kerberos ,if use please set true
           krbPath: xxxx ## krb file 
           krbTabPath: xxx ## krbTab file path
           kerberosUser: xxx ## kerberors user info 
@@ -197,12 +197,12 @@ schedule:
 
 ### How to use in schedule server side
 if you want to deploy your own server instead of the schedule-console,the config below must be configed 
-### schedule-server
+### Schedule-Server
 - codec
 - transport
 - register
 all the config detail you can get reference example [schedule-console](https://github.com/orion-open-group/schedule-console)
-### the task execute module
+### The task execute module
 - codec
 - transport
 - register

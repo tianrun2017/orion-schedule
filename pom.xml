@@ -18,7 +18,7 @@
         <module>schedule-config</module>
         <module>schedule-register</module>
         <module>schedule-transport</module>
-<!--        <module>schedule-test</module>-->
+        <!--        <module>schedule-test</module>-->
         <module>schedule-progress</module>
         <module>schedule-common</module>
     </modules>
@@ -252,7 +252,18 @@
         </dependencies>
 
     </dependencyManagement>
-
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>corp nexus-releases</name>
+            <url>http://maven.aliyun.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshot</id>
+            <name>corp nexus-snapshot</name>
+            <url>http://maven.aliyun.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <pluginManagement>
             <plugins>
