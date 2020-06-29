@@ -49,34 +49,34 @@ Orion schedule 是一个高性能的分布式任务框架，通过任务调度�
 ![schedule_architure](https://user-images.githubusercontent.com/66338301/85259237-480d8e80-b49b-11ea-8fa3-91749f9a9301.png)
 ## 代码组成
 整个框架分三个核心部分和一个demo部分
-- schedule-core 整个框架的核心实现
-- schedule-console 任务的调度服务，同时承担任务管理的一部分职能
-- console-web 管理控制台，前端页面，vue实现
+- orion-schedule 整个框架的核心实现
+- schedule-server 任务的调度服务，同时承担任务管理的一部分职能
+- schedule-web 管理控制台，前端页面，vue实现
 - schedule-demo 调度例子
 
 ## How to use it 
 ### 编译安装
-- schedule-core 
+- orion-schedule 
 ```bash
-git clone https://github.com/orion-open-group/schedule-core
-cd schedule-core
+git clone https://github.com/orion-open-group/orion-schedule
+cd orion-schedule
 mvn install -Dmaven.test.skip=true
 ```
-- schedule-console
+- schedule-server
 
 任务调度服务，下载后需要同步创建数据库,建库脚本在resource中
 ```bash
-git clone https://github.com/orion-open-group/schedule-console
-cd schedule-console
+git clone https://github.com/orion-open-group/schedule-server
+cd schedule-server
 mvn install -Dmaven.test.skip=true
 java -jar schedule-starter/target/schedule-starter.jar
 ```
-- console-web
+- schedule-web
 
 提供管理功能，下载后可直接用npm打包运行
 ```bash
-git clone https://github.com/orion-open-group/console-web
-cd console-web
+git clone https://github.com/orion-open-group/schedule-web
+cd schedule-web
 cnpm install
 cnpm run dev
 ``` 
@@ -86,7 +86,7 @@ cnpm run dev
 #### 分组配置
 整个任务调度是基于虚拟分组进行调度，首先需要新建一个虚拟分组，用于标记哪些机器归属这一个分组，这个操作在分组管理里完成
 #### 任务开发
-maven项目中需要新增 schedule-client-starter 依赖，版本用schedule-core里的版本即可
+maven项目中需要新增 schedule-client-starter 依赖，版本用orion-schedule里的版本即可
 ```xml
  <dependency>
     <groupId>com.orion.schedule</groupId>
@@ -172,7 +172,7 @@ schedule:
 - codec
 - transport
 - register
-服务端的配置可参考 [schedule-console](https://github.com/orion-open-group/schedule-console)
+服务端的配置可参考 [schedule-server](https://github.com/orion-open-group/schedule-server)
 ### 任务接入端
 - codec
 - transport

@@ -77,26 +77,26 @@ the demo for task development
 
 ## How to use it 
 ###  Compile and Install
-- schedule-core 
+- orion-schedule
 ```bash
-git clone https://github.com/orion-open-group/schedule-core
-cd schedule-core
+git clone https://github.com/orion-open-group/orion-schedule
+cd orion-schedule
 mvn install -Dmaven.test.skip=true
 ```
-- schedule-console
+- schedule-server
 
 you should create the datasource to persistent task config and task instance, now it only support mysql ,you can use the init.sql ,it will create database and user 
 ```bash
-git clone https://github.com/orion-open-group/schedule-console
-cd schedule-console
+git clone https://github.com/orion-open-group/schedule-server
+cd schedule-server
 mvn install -Dmaven.test.skip=true
 java -jar schedule-starter/target/schedule-starter.jar
 ```
 - console-web
 the main page for task management,it depends on the schedule console module
 ```bash
-git clone https://github.com/orion-open-group/console-web
-cd console-web
+git clone https://github.com/orion-open-group/schedule-web
+cd schedule-web
 cnpm install
 cnpm run dev
 ``` 
@@ -201,7 +201,7 @@ if you want to deploy your own server instead of the schedule-console,the config
 - codec
 - transport
 - register
-all the config detail you can get reference example [schedule-console](https://github.com/orion-open-group/schedule-console)
+all the config detail you can get reference example [schedule-server](https://github.com/orion-open-group/schedule-server)
 ### The task execute module
 - codec
 - transport
