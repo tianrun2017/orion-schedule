@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <name>schedule-server-starter</name>
-    <url>http://www.example.com</url>
+
     <description>the starter of the schedule client,client may add this dependency</description>
 
     <dependencies>

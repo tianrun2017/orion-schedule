@@ -13,8 +13,8 @@
     <artifactId>schedule-progress-dao</artifactId>
 
     <name>schedule-progress-dao</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+
+
 
     <dependencies>
         <dependency>
