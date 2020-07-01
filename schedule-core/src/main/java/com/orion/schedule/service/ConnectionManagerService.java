@@ -240,14 +240,14 @@ public class ConnectionManagerService {
             serverRegister.addServerChangeListener(group, new ServerStateChangeListener() {
                 @Override
                 public void serverRemoved(ServerInstance serverInstance) {
-                    logger.info("group server {} instance removed ,add new instance [{}] ", group, JSON.toJSONString(serverInstance));
+                    logger.info("group server {} instance removed ,instance [{}] ", group, JSON.toJSONString(serverInstance));
                     groupConnectionKeyMap.get(group).remove(getServerKey(serverInstance));
                     doRemoveConnection(getServerKey(serverInstance));
                 }
 
                 @Override
                 public void serverAdd(ServerInstance serverInstance) {
-                    logger.info("group server {} instance add ,remove instance [{}] ", group, JSON.toJSONString(serverInstance));
+                    logger.info("group server {} instance add ,instance [{}] ", group, JSON.toJSONString(serverInstance));
                     addServerInstance(group, getServerKey(serverInstance));
                 }
 
@@ -357,12 +357,15 @@ public class ConnectionManagerService {
             if (!groupConnectionKeyMap.containsKey(group)) {
                 groupConnectionKeyMap.put(group, Lists.newArrayList());
             }
+            if (groupConnectionKeyMap.get(group).contains(serverKey)) {
+                return;
+            }
             groupConnectionKeyMap.get(group).add(serverKey);
             if (!lazyInitConnect) {
                 initConnection(serverKey);
             }
         } catch (Throwable e) {
-            logger.error("remove connection exception " + serverKey, e);
+            logger.error("add new connection exception " + serverKey, e);
         } finally {
             reentrantLock.unlock();
         }

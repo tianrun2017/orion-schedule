@@ -1,5 +1,6 @@
 package com.orion.schedule.config;
 
+import com.orion.schedule.config.register.DbRegister;
 import com.orion.schedule.config.register.EtcdRegister;
 import com.orion.schedule.config.register.NacosRegister;
 import com.orion.schedule.config.register.ZookeeperRegister;
@@ -32,6 +33,8 @@ public class RegisterConfig {
     EtcdRegister etcdConfig;
 
     ZookeeperRegister zkConfig;
+
+    DbRegister dbConfig;
 
 }
 

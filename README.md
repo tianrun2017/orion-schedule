@@ -173,6 +173,9 @@ schedule:
           ttl: xx ## etcd to keep alive
         zkConfig: ## zk config
           timeout: xx ## zk connection 
+        dbConfig: ## dbConfig
+          driverClassName: ## the actual driver class that you use for your druid connection
+          ttl: xx ## the ttl that the client send heart beat or server decide if the client is alive
       task: 
         groupList:  ## the virtual group info,it comes the group config page
           - xx
@@ -208,5 +211,21 @@ all the config detail you can get reference example [schedule-server](https://gi
 - register
 - task
 
+### NOTICE
+if you use the db as register center ,you should import the table to your db
+```sql
+'CREATE TABLE `service_alive_record` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(45) DEFAULT NULL,
+  `port` int DEFAULT NULL,
+  `group_id` varchar(45) DEFAULT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ttl_update_time` bigint DEFAULT NULL,
+  `status` tinyint(1) DEFAULT ''0'' COMMENT ''0正常，1无效'',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8'
+```
+
 you can get reverence like this 
 [schedule-demo](https://github.com/orion-open-group/schedule-demo)
+

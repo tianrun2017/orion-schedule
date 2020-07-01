@@ -18,6 +18,7 @@
         <module>schedule-register-nacos</module>
         <module>schedule-register-etcd</module>
         <module>schedule-register-zookeeper</module>
+        <module>schedule-register-db</module>
         <module>schedule-register-eureka</module>
     </modules>
 </project>

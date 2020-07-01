@@ -14,5 +14,6 @@ public class DataSourceConfig implements java.io.Serializable {
     String userName;
     String password;
     String token;
+    String driverClassName;
     int pollSize = 5;
 }
