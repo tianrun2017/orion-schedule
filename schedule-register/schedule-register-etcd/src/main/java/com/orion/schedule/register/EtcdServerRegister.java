@@ -107,7 +107,7 @@ public class EtcdServerRegister implements ServerRegister {
             }
             return true;
         } catch (Throwable e) {
-            logger.error("etcd Server not available.");
+            logger.error("etcd Server not available.",e);
             throw e;
         }
     }

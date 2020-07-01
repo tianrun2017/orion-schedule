@@ -33,5 +33,7 @@ public class RegisterConfig {
 
     ZookeeperRegister zkConfig;
 
+    DataSourceConfig dbConfig;
+
 }
 
