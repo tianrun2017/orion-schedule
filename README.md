@@ -1,6 +1,6 @@
 Welcome to Use this Distributed Task Framework
 
-This framework support NACOS,ETCD,ZOOKEEPER as it's service discover now,if you neeed another kind of service discover service ,
+This framework support NACOS,ETCD,ZOOKEEPER,EUREKA as it's service discover now,if you neeed another kind of service discover service ,
 please notice me ,i will add the feature as soon as possible, You can add the feature by yourself ,it's very simple
 please read the register module ,there is only a few interfaces that you need to implement,
 - register
@@ -163,7 +163,7 @@ schedule:
           connectionTimeOut: xxx ## the connection timeout for netty4
           closeWait: xx ## how long the progress to wait for the remian task data to execute,when the application was stoped
       register:
-        code: xxx ##the service discover type,now the framework support nacos,zookeeper,etcd
+        code: xxx ##the service discover type,now the framework support nacos,zookeeper,etcd,db,eureka
         serverList: ##the server info
            - 10.10.10.10
            - 10.10.10.10
@@ -176,6 +176,8 @@ schedule:
         dbConfig: ## dbConfig
           driverClassName: ## the actual driver class that you use for your druid connection
           ttl: xx ## the ttl that the client send heart beat or server decide if the client is alive
+        eurekaConfig:
+          registerSelf: false ## notice that,if this config as server, it must be false ,and if this is as client, it must be false
       task: 
         groupList:  ## the virtual group info,it comes the group config page
           - xx
