@@ -1,6 +1,6 @@
 Welcome to Use this Distributed Task Framework
 
-This framework support NACOS,ETCD,ZOOKEEPER,EUREKA as it's service discover now,if you neeed another kind of service discover service ,
+This framework support nacos/etcd/zookeeper/eureka/db as it's service discover now,if you neeed another kind of service discover service ,
 please notice me ,i will add the feature as soon as possible, You can add the feature by yourself ,it's very simple
 please read the register module ,there is only a few interfaces that you need to implement,
 - register
