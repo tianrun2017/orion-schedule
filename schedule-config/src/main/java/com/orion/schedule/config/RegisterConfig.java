@@ -1,9 +1,6 @@
 package com.orion.schedule.config;
 
-import com.orion.schedule.config.register.DbRegister;
-import com.orion.schedule.config.register.EtcdRegister;
-import com.orion.schedule.config.register.NacosRegister;
-import com.orion.schedule.config.register.ZookeeperRegister;
+import com.orion.schedule.config.register.*;
 import lombok.Data;
 
 import java.util.List;
@@ -35,6 +32,8 @@ public class RegisterConfig {
     ZookeeperRegister zkConfig;
 
     DbRegister dbConfig;
+
+    EurekaConfig eurekaConfig;
 
 
 }

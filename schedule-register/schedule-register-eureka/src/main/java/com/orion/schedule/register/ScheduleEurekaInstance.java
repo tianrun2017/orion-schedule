@@ -42,6 +42,6 @@ public class ScheduleEurekaInstance extends PropertiesInstanceConfig {
 
     @Override
     public int getLeaseExpirationDurationInSeconds() {
-        return 3;
+        return 2;
     }
 }

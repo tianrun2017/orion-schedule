@@ -51,10 +51,22 @@ public class EurekaServerRegister implements ServerRegister {
                 return scheduleServerConfig.getRegister().getServerList();
             }
 
+
+            @Override
+            public boolean shouldDisableDelta() {
+                return false;
+            }
+
             @Override
             public boolean shouldRegisterWithEureka() {
-                return true;
+                return scheduleServerConfig.getRegister().getEurekaConfig().isRegisterSelf();
             }
+
+            @Override
+            public int getRegistryFetchIntervalSeconds() {
+                return 1;
+            }
+
         };
     }
 
@@ -102,19 +114,28 @@ public class EurekaServerRegister implements ServerRegister {
     public List<ServerInstance> getAllServer(String groupId) throws Exception {
         String serviceName = String.format(serviceNamePrefix, groupId);
         DiscoveryClient discoveryClient = discoveryClientMap.get(serviceName);
-        if (discoveryClient != null) {
-            Application application = discoveryClient.getApplication(serviceName);
-            if (application != null) {
-                List<InstanceInfo> instances = application.getInstances();
-                if (CollectionUtils.isNotEmpty(instances)) {
-                    List<ServerInstance> collect = instances.stream().map(instanceInfo -> {
-                        String instanceId = instanceInfo.getInstanceId();
-                        String[] split = instanceId.split(":");
-                        ServerInstance serverInstance = ServerInstance.defaultInstance().withServer(split[0]).withPort(Integer.parseInt(split[1]));
-                        return serverInstance;
-                    }).collect(Collectors.toList());
-                    return collect;
+        if (discoveryClient == null) {
+            synchronized (EurekaServerRegister.class) {
+                discoveryClient = discoveryClientMap.get(serviceName);
+                if (discoveryClient == null) {
+                    ScheduleEurekaInstance scheduleEurekaInstance = new ScheduleEurekaInstance(serviceName, "", -1);
+                    ApplicationInfoManager applicationInfoManager = new ApplicationInfoManager(scheduleEurekaInstance, (ApplicationInfoManager.OptionalArgs) null);
+                    discoveryClient = new DiscoveryClient(applicationInfoManager, defaultEurekaClientConfig);
+                    discoveryClientMap.put(serviceName, discoveryClient);
                 }
+            }
+        }
+        Application application = discoveryClient.getApplication(serviceName);
+        if (application != null) {
+            List<InstanceInfo> instances = application.getInstances();
+            if (CollectionUtils.isNotEmpty(instances)) {
+                List<ServerInstance> collect = instances.stream().map(instanceInfo -> {
+                    String instanceId = instanceInfo.getInstanceId();
+                    String[] split = instanceId.split(":");
+                    ServerInstance serverInstance = ServerInstance.defaultInstance().withServer(split[0]).withPort(Integer.parseInt(split[1]));
+                    return serverInstance;
+                }).collect(Collectors.toList());
+                return collect;
             }
         }
         return Lists.newArrayList();
@@ -124,28 +145,24 @@ public class EurekaServerRegister implements ServerRegister {
     public void addServerChangeListener(String groupId, ServerStateChangeListener serverStateChangeListener) throws Exception {
         String serviceName = String.format(serviceNamePrefix, groupId);
         DiscoveryClient discoveryClient = discoveryClientMap.get(serviceName);
-        if(discoveryClient != null)
-        {
-            discoveryClient.registerEventListener();
-        }
-        namingService.subscribe(serviceName, scheduleServerConfig.getRegister().getRegisterEnv(), event -> {
-            //refresh all the server instance
-            NamingEvent namingEvent = (NamingEvent) (event);
-            List<Instance> instances = namingEvent.getInstances();
+        if (discoveryClient != null) {
+            Application application = discoveryClient.getApplication(serviceName);
+            List<InstanceInfo> instances = application.getInstancesAsIsFromEureka();
             List<ServerInstance> serverInstanceList = Lists.newArrayList();
             if (CollectionUtils.isNotEmpty(instances)) {
-                serverInstanceList = instances.stream()
-                        .map(instance -> ServerInstance.defaultInstance().withServer(instance.getIp())
-                                .withPort(instance.getPort())).collect(Collectors.toList());
-
+                instances.stream().forEach(instanceInfo -> {
+                            String[] split = instanceInfo.getInstanceId().split(":");
+                            ServerInstance serverInstance = ServerInstance.defaultInstance().withServer(split[0]).withPort(Integer.parseInt(split[1]));
+                            serverInstanceList.add(serverInstance);
+                        }
+                );
             }
             serverStateChangeListener.refreshAll(serverInstanceList);
-        });
-
+        }
     }
 
     @Override
     public String registerCode() {
-        return RegisterType.NACOS.getCode();
+        return RegisterType.EUREKA.getCode();
     }
 }

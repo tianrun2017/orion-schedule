@@ -10,6 +10,8 @@ public enum RegisterType {
     NACOS("nacos"),
     ETCD("etcd"),
     ZK("zk"),
+    DB("db"),
+    EUREKA("eureka"),
 
     ;
 

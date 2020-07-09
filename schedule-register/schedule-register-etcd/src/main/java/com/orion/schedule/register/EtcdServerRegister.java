@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import com.orion.schedule.common.util.InetUtils;
 import com.orion.schedule.config.ScheduleServerConfig;
 import com.orion.schedule.config.register.EtcdRegister;
+import com.orion.schedule.enums.RegisterType;
 import com.orion.schedule.register.listener.ServerStateChangeListener;
 import com.orion.schedule.transport.ServerTransport;
 import com.orion.schedule.transport.ServerTransportService;
@@ -216,7 +217,7 @@ public class EtcdServerRegister implements ServerRegister {
 
     @Override
     public String registerCode() {
-        return "etcd";
+        return RegisterType.ETCD.getCode();
     }
 
 

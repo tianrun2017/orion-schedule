@@ -10,6 +10,7 @@ import com.google.common.collect.Sets;
 import com.orion.schedule.common.util.InetUtils;
 import com.orion.schedule.config.DataSourceConfig;
 import com.orion.schedule.config.ScheduleServerConfig;
+import com.orion.schedule.enums.RegisterType;
 import com.orion.schedule.progress.util.ScheduleEncrypt;
 import com.orion.schedule.register.listener.ServerStateChangeListener;
 import com.orion.schedule.transport.ServerTransport;
@@ -338,6 +339,6 @@ public class DbServerRegister implements ServerRegister {
 
     @Override
     public String registerCode() {
-        return "db";
+        return RegisterType.DB.getCode();
     }
 }
